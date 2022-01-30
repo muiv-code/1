@@ -1,0 +1,75 @@
+
+body {
+    padding-left: 30px;
+    font-family: Geneva, Arial, Helvetica, sans-serif;
+}
+
+table {
+    padding: 10px 0 0 40px;
+    width: 70em;
+}
+
+td {
+    padding: 20px;
+    height: 40px;
+}
+
+.table-titles {
+    background-color: #addcc3;
+    text-align: center;
+}
+
+.part-model {
+    background-color: #ebfce6;
+    width: 15em;
+    text-align: center;
+}
+
+textarea {
+    width: 40em;
+}
+
+select {
+    width: 25em;
+}
+
+#submit-button {
+    margin: 2em 0 2em 67em;
+    height: 4em;
+    width: 15em;
+    background-color: #81bb81;
+    border: none;
+    cursor: pointer;
+}
+
+#config-info-bg {
+    visibility: hidden;
+    position: fixed;
+    background-color: black;
+    left: 0;
+    top: 0;
+    opacity: 0.5;
+    width: 100%;
+    height: 100%;
+}
+
+#config-info-block {
+    visibility: hidden;
+    position: fixed;
+    background-color: white;
+    left: 25em;
+    top: 5em;
+    width: 30%;
+    padding: 1em 0 3em 2em;
+}
+
+#hide-config-button {
+    visibility: hidden;
+    display: grid;
+    margin-left: 90%;
+    height: 2em;
+    width: 2em;
+    background-color: #81bb81;
+    border: none;
+    cursor: pointer;
+}

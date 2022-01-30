@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <!-- Метаинформация: кодировка, адаптация под устройства, элементы индексации, ссылки на подгружаемые вспомогательные файлы -->
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Мастер конфигурация</title>
+    <meta name="keywords" content="Конфигурация пк сборка">
+    <meta name="description" content="Мастер конфигурации персональных компьютеров">
+    <link rel="stylesheet" type="text/css" href="style.css">
+</head>
+<body>
+<!-- Таблица выбора конфигурации ПК -->
+<form id="pc-config-form">
+    <table>
+        <tr class="table-titles">
+            <td>Заказ конфигурации компьютера</td>
+        </tr>
+        <tr>
+            <td class="part-model">
+                Название конфигурации:<br>
+                <input type="text" id="config-name"><br><br>
+                Информация о конфигурации:<br>
+                <textarea id="description"></textarea>
+            </td>
+        </tr>
+        <tr>
+            <td class="part-model">
+                Материнская плата:<br>
+                <select id="motherboard-model"></select>
+            </td>
+        </tr>
+        <tr>
+            <td class="part-model">
+                Процессор:<br>
+                <select id="cpu-model"></select>
+            </td>
+        </tr>
+        <tr>
+            <td class="part-model">
+                Оперативная память:<br>
+                <select id="mem-model"></select>
+            </td>
+        </tr>
+        <tr>
+            <td class="part-model">
+                Жесткий диск:<br>
+                <select id="hd-model"></select>
+            </td>
+        </tr>
+        <tr>
+            <td class="part-model">
+                Видеокарта:<br>
+                <select id="gpu-model"></select>
+            </td>
+        </tr>
+        <tr>
+            <td class="part-model">
+                Блок питания:<br>
+                <select id="power-model"></select>
+            </td>
+        </tr>
+        <tr>
+            <td class="part-model">
+                Корпус:<br>
+                <select id="case-model"></select>
+            </td>
+        </tr>
+    </table>
+    <input type="submit" value="Отправить" id="submit-button">
+</form>
+
+<div id="config-info-bg"></div>
+<div id="config-info-block">
+    <input type="button" value="x" id="hide-config-button">
+    Заказ сформирован и отправлен:
+    <div id="config-info-text"></div>
+</div>
+
+</body>
+<!-- выполнение скрипта сразу после подкгрузки DOM-дерева -->
+<script type="text/javascript" src="script.js"></script>
+</html>
