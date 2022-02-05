@@ -4,7 +4,7 @@ import pymysql
 from pymysql.constants import CLIENT
 
 DB_HOST = "localhost"
-DB_USER = "root"
+DB_USER = "user"
 DB_PASSWORD = "strong_password"
 DB_NAME = "mydb"
 
