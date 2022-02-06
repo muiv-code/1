@@ -1,7 +1,6 @@
 from http.server import HTTPServer, BaseHTTPRequestHandler
 import json
 import pymysql
-from pymysql.constants import CLIENT
 
 DB_HOST = "localhost"
 DB_USER = "user"
@@ -14,7 +13,7 @@ def connect_db():
                            password=DB_PASSWORD,
                            db=DB_NAME)
 
-# Функция для SELECT заппроса, принимает query строку и возвращает результат полученный из бд.
+# Функция для SELECT запроса, принимает query строку и возвращает результат полученный из бд.
 def db_select(query):
     connection = connect_db()
 
