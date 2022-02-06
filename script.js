@@ -66,7 +66,6 @@ function addSelectOption(key, value) {
 // загрузки страницы.
 function addOnsubmitAction() {
     let form = document.getElementById("pc-config-form");
-    // form.action = "configured.html";
     form.onsubmit = submit;
 }
 
