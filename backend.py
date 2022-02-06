@@ -2,16 +2,11 @@ from http.server import HTTPServer, BaseHTTPRequestHandler
 import json
 import pymysql
 
-DB_HOST = "localhost"
-DB_USER = "user"
-DB_PASSWORD = "strong_password"
-DB_NAME = "mydb"
-
 def connect_db():
-    return pymysql.connect(host=DB_HOST,
-                           user=DB_USER,
-                           password=DB_PASSWORD,
-                           db=DB_NAME)
+    return pymysql.connect(host="localhost",
+                           user="user",
+                           password="strong_password",
+                           db="mydb")
 
 # Функция для SELECT запроса, принимает query строку и возвращает результат полученный из бд.
 def db_select(query):
@@ -57,22 +52,22 @@ def get_cases():
     return db_select("SELECT name FROM cases WHERE state='available'")
 
 def insert_order(name, description, motherboard, cpu, mem, hd, gpu, power, case):
-    # Формируем список элементов конфигурации из аргументов функции
+    # Формируем список элементов конфигурации для бд из аргументов функции
     values = ', '.join(str('"' + x + '"') for x in locals().values())
     # Формируем sql-запрос вставляющий сформированную конфигурацию в таблицу с заказами.
-    queryInsertOrder = "INSERT INTO orders (order_time, name, description, motherboard, cpu, mem, hd, gpu, power, pc_case) VALUES (NOW(), " + values + ")"
+    query_insert_order = "INSERT INTO orders (order_time, name, description, motherboard, cpu, mem, hd, gpu, power, pc_case) VALUES (NOW(), " + values + ")"
     # Формируем sql-запрос увеличивающий количество заказов для сборщика у которого меньше всего заказов. Таблица должна иметь значение orders_num по умолчанию 0.
-    queryAddOrderToBuilder = "UPDATE builders SET orders_num = orders_num + 1 WHERE id = (SELECT id FROM (SELECT id FROM builders ORDER BY orders_num ASC LIMIT 1) AS t)"
+    query_add_order_to_builder = "UPDATE builders SET orders_num = orders_num + 1 WHERE id = (SELECT id FROM (SELECT id FROM builders ORDER BY orders_num ASC LIMIT 1) AS t)"
     # Формируем sql-запрос увеличивающий статистику заказов в определенный день.
-    queryIncreaseOrdersNum = "INSERT INTO statistics (day, ordered) VALUES (NOW(), 1) ON DUPLICATE KEY UPDATE ordered = ordered + 1;"
+    query_increase_orders_num = "INSERT INTO statistics (day, ordered) VALUES (NOW(), 1) ON DUPLICATE KEY UPDATE ordered = ordered + 1;"
     # Создаем подключение к бд.
     connection = connect_db()
 
     try:
         with connection.cursor() as cursor:
-            cursor.execute(queryInsertOrder)
-            cursor.execute(queryAddOrderToBuilder)
-            cursor.execute(queryIncreaseOrdersNum)
+            cursor.execute(query_insert_order)
+            cursor.execute(query_add_order_to_builder)
+            cursor.execute(query_increase_orders_num)
             connection.commit()
 
     finally:
@@ -96,8 +91,8 @@ class HTTPRequestHandler(BaseHTTPRequestHandler):
             "case": get_cases(),
         }
 
-        optionsJson = json.dumps(options)
-        self.wfile.write(str.encode(optionsJson))
+        options_json = json.dumps(options)
+        self.wfile.write(str.encode(options_json))
 
     def do_POST(self):
         content_length = int(self.headers['Content-Length'])
